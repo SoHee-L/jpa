@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository//스프링에서 제공하는 Repository 어노테이션. 얘가 컴포넌트 스캔해서 자동으로 관리가 됨.

@@ -2,6 +2,7 @@ package jpabook.jpashop.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.aspectj.weaver.ast.Or;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -63,5 +64,55 @@ public class Order {
     public void setDelivery(Delivery delivery) {
         this.delivery = delivery;
         delivery.setOrder(this);
+    }
+
+    //==생성 메서드==//
+    //... 문법은 여러개를 넘길 수 있음.
+    //이렇게 하면 order 가 연관관계를 걸면서 상태, 주문시간 정보까지 세팅해서 정리가 됨.
+    //앞으로 생성하는 시점을 변경하면 createOrder메서드만 변경하면 됨.
+    public static Order createOrder(Member member, Delivery delivery, OrderItem... orderItems){
+        Order order = new Order();
+        order.setMember(member);
+        order.setDelivery(delivery);
+        for (OrderItem orderItem : orderItems){
+            order.addOrderItem(orderItem);
+        }
+        order.setStatus(OrderStatus.ORDER);
+        order.setOrderDate(LocalDateTime.now());
+        return order;
+    }
+
+    //==비즈니스 로직==//
+    /**
+     * 주문 취소
+     */
+    public void cancel(){
+        //배달 상태가 이미 배송 완료라면
+        if(delivery.getStatus() == DeliveryStatus.COMP){
+            throw new IllegalStateException("이미 배송완료된 상품은 취소가 불가능합니다.");
+        }
+
+        this.setStatus(OrderStatus.CANCEL);
+        for(OrderItem orderItem : orderItems){
+            //orderItem 에도 취소 해줘야됨. 한번 주문할 때 고객이 상품을 두개 주문할 수도 있으니.
+            orderItem.cancel();
+        }
+    }
+
+    //==조회 로직==//
+
+    /**
+     * 전체 주문 가격 조회
+     */
+    public int getTotalPrice(){
+//        int totalPrice = 0;
+//        for(OrderItem orderItem: orderItems ){
+//            totalPrice += orderItem.getTotalPrice();
+//        }
+        //위와 같은 코드로 stream을 이용해서 깔끔하게 정리할 수 있음.
+        int totalPrice = orderItems.stream()
+                .mapToInt(OrderItem::getTotalPrice)
+                .sum();
+        return totalPrice;
     }
 }
