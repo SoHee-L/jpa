@@ -40,41 +40,42 @@ public class OrderRepository {
 
 //jpql 동적쿼리 사용 예시
         //1. 실무에서 사용 x
-//        String jpql = "select o from Order o join o.member m";
-//        boolean isFirstCondition = true;
-//
-//        //주문 상태 검색
-//        if (orderSearch.getOrderStatus() != null) {
-//            //값이 있으면 where 나 and 중에 하나를 붙임.
-//            if (isFirstCondition) {
-//                jpql += " where";
-//                isFirstCondition = false;
-//            } else {
-//                jpql += " and";
-//            }
-//            jpql += " o.status = :status";
-//        }
-//        //회원 이름 검색
-//        if (StringUtils.hasText(orderSearch.getMemberName())) {
-//            if (isFirstCondition) {
-//                jpql += " where";
-//                isFirstCondition = false;
-//            } else {
-//                jpql += " and";
-//            }
-//            jpql += " m.name like :name";
-//        }
-//
-//        TypedQuery<Order> query = em.createQuery(jpql, Order.class)
-//                .setMaxResults(1000); //최대 1000건
-//        if (orderSearch.getOrderStatus() != null) {
-//            query = query.setParameter("status", orderSearch.getOrderStatus());
-//        }
-//        if (StringUtils.hasText(orderSearch.getMemberName())) {
-//            query = query.setParameter("name", orderSearch.getMemberName());
-//        }
-//        return query.getResultList();
-//    }
+    public List<Order> findAllByString(OrderSearch orderSearch) {
+        String jpql = "select o from Order o join o.member m";
+        boolean isFirstCondition = true;
+
+        //주문 상태 검색
+        if (orderSearch.getOrderStatus() != null) {
+            //값이 있으면 where 나 and 중에 하나를 붙임.
+            if (isFirstCondition) {
+                jpql += " where";
+                isFirstCondition = false;
+            } else {
+                jpql += " and";
+            }
+            jpql += " o.status = :status";
+        }
+        //회원 이름 검색
+        if (StringUtils.hasText(orderSearch.getMemberName())) {
+            if (isFirstCondition) {
+                jpql += " where";
+                isFirstCondition = false;
+            } else {
+                jpql += " and";
+            }
+            jpql += " m.name like :name";
+        }
+
+        TypedQuery<Order> query = em.createQuery(jpql, Order.class)
+                .setMaxResults(1000); //최대 1000건
+        if (orderSearch.getOrderStatus() != null) {
+            query = query.setParameter("status", orderSearch.getOrderStatus());
+        }
+        if (StringUtils.hasText(orderSearch.getMemberName())) {
+            query = query.setParameter("name", orderSearch.getMemberName());
+        }
+        return query.getResultList();
+    }
 
     //2. jpa 가 동적쿼리를 작성할 수 있도록 표준으로 제공해줌. 이것도 실무에서 권장하진 않음.
     //얘를 빌드하면 결과적으로 jpql 이 만들어짐. 무슨 쿼리인지 어려워서 유지보수하기 힘들다는 큰 단점이 있음.
