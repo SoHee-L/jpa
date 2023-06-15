@@ -107,6 +107,19 @@ public class OrderRepository {
         return query.getResultList();
     }
 
+    public List<Order> findAllWithMemberDelivery() {
+        //order 를 조회하는데 member 랑 delivery 를 sql 입장에선 조인이면서 select 절에서 한방에 다 가져와 버림.
+        //즉, 한번의 쿼리로 member 랑 delivery 를 조인한다음에 select 절에 다 넣고 한번에 다 땡겨옴.
+        //order 에 가보면 member 랑 delivery 랑 lazy 로 되어 있는데 lazy 다 무시하고 이경우에
+        //proxy 가 아닌 진짜 객체값을 다 채워서 가져와버림. => 이걸 fetch join 이라고 함. (jpa 에만 있는 문법)
+        return em.createQuery(
+                "select o from Order o " +
+                        "join fetch o.member m " +
+                        "join fetch o.delivery d", Order.class
+        ).getResultList();
+    }
+
+
 }
 
 

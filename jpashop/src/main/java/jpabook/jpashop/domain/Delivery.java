@@ -1,5 +1,6 @@
 package jpabook.jpashop.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,6 +14,9 @@ public class Delivery {
     @Id @GeneratedValue
     @Column(name = "delivery_id")
     private Long id;
+
+    //양방향이 걸리는데는 다 @JsonIgnore 해줘야됨.
+    @JsonIgnore //order 하는 부분은 @JsonIgnore 해줘야됨.
     @OneToOne(mappedBy = "delivery", fetch = LAZY)
     private Order order;
     @Embedded
