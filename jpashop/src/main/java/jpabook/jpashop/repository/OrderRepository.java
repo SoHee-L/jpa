@@ -115,11 +115,35 @@ public class OrderRepository {
         return em.createQuery(
                 "select o from Order o " +
                         "join fetch o.member m " +
-                        "join fetch o.delivery d", Order.class
-        ).getResultList();
+                        "join fetch o.delivery d", Order.class)
+                .getResultList();
     }
 
 
+    public List<Order> findAllWithItem() {
+        //실무에서 복잡한 동적쿼리는 왠만하면 querydsl 쓰기
+        return em.createQuery(
+                "select distinct o from Order o " +
+                            "join fetch o.member m " +
+                            "join fetch o.delivery d " + //delivery 까지만 fetch join 하기 orderItems 에서는 fetch join x
+                            "join fetch o.orderItems oi " +
+                            "join fetch oi.item i", Order.class)
+                .setFirstResult(1)
+                .setMaxResults(100)
+                .getResultList();
+    }
+
+
+    public List<Order> findAllWithMemberDelivery(int offset, int limit) {
+        return em.createQuery(
+        //toOne 관계로 fetch join 함.
+                        "select o from Order o" +
+                                " join fetch o.member m" +
+                                " join fetch o.delivery d", Order.class)
+                .setFirstResult(offset)
+                .setMaxResults(limit)
+                .getResultList();
+    }
 }
 
 
