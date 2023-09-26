@@ -6,7 +6,14 @@ public class Member {
     @Id /*JPA에 PK가 뭔지 알려줘야되기 때문에 이것도 필수로 작성*/
     private Long id;
     private String name;
-    //Getter, Setter …
+
+    public Member() {
+    }
+
+    public Member(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
     public Long getId() {
         return id;
