@@ -43,10 +43,4 @@ public class Member {
         this.team = team;
     }
 
-    public void chageTeam(Team team) {
-        this.team = team;
-        //양방향 연관관계 맵핑을 위해 this라는 나 자신의 인스턴스를 넣어주고
-        //JpaMain.java에 team.getMembers().add(member); 코드 삭제
-        team.getMembers().add(this);
-    }
 }
