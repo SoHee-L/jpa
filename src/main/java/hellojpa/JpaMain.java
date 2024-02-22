@@ -18,30 +18,20 @@ public class JpaMain {
 
         try {
 
-            //객체를 테이블에 맞추어 모델링
-            //팀 저장
-            Team team = new Team();
-            team.setName("TeamA");
-            em.persist(team);
-
-            //회원 저장
             Member member = new Member();
             member.setUsername("member1");
-            member.chageTeam(team); //**
+
             em.persist(member);
 
-            em.flush();
-            em.clear();
-
-            //객체지향 관점에선 양쪽에 다 값을 걸어야 함.
-            Team findTeam = em.find(Team.class, team.getId());
-            List<Member> members = findTeam.getMembers();
-
-            for (Member m : members){
-                System.out.println("m = " + m.getUsername());
-            }
+            Team team = new Team();
+            team.setName("teamA");
+            team.getMembers().add(member);//일대다의 경우 해당 부분이 애매해짐(팀 테이블에 insert될 수 있는 내용이 아니기 때문)
+            //왜래키가 team 테이블이 아닌 member 테이블에 있기 때문
+            em.persist(team);
 
             tx.commit();
+
+
         } catch (Exception e) {
             tx.rollback();
         } finally {

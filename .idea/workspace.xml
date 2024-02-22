@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04183142-bb38-47bd-8bff-ecad34877dcb" name="Changes" comment="[제목] 자바 ORM 표준 JPA 프로그래밍 - 기본편 / 연관관계 매핑 기초 / 수강 완료">
+    <list default="true" id="04183142-bb38-47bd-8bff-ecad34877dcb" name="Changes" comment="[제목] 자바 ORM 표준 JPA 프로그래밍 - 기본편 / 다양한 연관관계 매핑 중 다대일[N:1] / 수강 완료">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hellojpa/JpaMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hellojpa/JpaMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/hellojpa/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hellojpa/Member.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/hellojpa/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hellojpa/Team.java" afterDir="false" />
     </list>
@@ -85,7 +86,7 @@
       <recent name="jpabook.jpashop.domain" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.jpabook.jpashop.JpaMain">
+  <component name="RunManager" selected="Application.JpaMain">
     <configuration name="JpaMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <envs>
         <env name="server.port" value="8888" />
@@ -117,8 +118,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.jpabook.jpashop.JpaMain" />
         <item itemvalue="Application.JpaMain" />
+        <item itemvalue="Application.jpabook.jpashop.JpaMain" />
       </list>
     </recent_temporary>
   </component>
@@ -139,7 +140,7 @@
       <workItem from="1695004776748" duration="6000" />
       <workItem from="1695691845135" duration="5367000" />
       <workItem from="1708387081010" duration="3322000" />
-      <workItem from="1708391251368" duration="43546000" />
+      <workItem from="1708391251368" duration="45194000" />
     </task>
     <task id="LOCAL-00001" summary="[제목] 자바 ORM 표준 JPA 프로그래밍 - 기본편 / 영속성 관리 - 내부 동작 방식 / 수강 완료">
       <created>1695694614974</created>
@@ -164,7 +165,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708581258045</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="[제목] 자바 ORM 표준 JPA 프로그래밍 - 기본편 / 다양한 연관관계 매핑 중 다대일[N:1] 수강 완료">
+      <option name="closed" value="true" />
+      <created>1708583760512</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1708583760512</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -197,7 +206,8 @@
     <MESSAGE value="[제목] 자바 ORM 표준 JPA 프로그래밍 - 기본편 / 영속성 관리 - 내부 동작 방식 / 수강 완료" />
     <MESSAGE value="[제목] 자바 ORM 표준 JPA 프로그래밍 - 기본편 / 엔티티 매핑 / 수강 완료&#10;hellojpa -&gt; 기본 키 매핑까지 정리 | jpabook-&gt; 실전 예제1 정리" />
     <MESSAGE value="[제목] 자바 ORM 표준 JPA 프로그래밍 - 기본편 / 연관관계 매핑 기초 / 수강 완료" />
-    <option name="LAST_COMMIT_MESSAGE" value="[제목] 자바 ORM 표준 JPA 프로그래밍 - 기본편 / 연관관계 매핑 기초 / 수강 완료" />
+    <MESSAGE value="[제목] 자바 ORM 표준 JPA 프로그래밍 - 기본편 / 다양한 연관관계 매핑 중 다대일[N:1] / 수강 완료" />
+    <option name="LAST_COMMIT_MESSAGE" value="[제목] 자바 ORM 표준 JPA 프로그래밍 - 기본편 / 다양한 연관관계 매핑 중 다대일[N:1] / 수강 완료" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
